@@ -4,7 +4,7 @@ module Api
       def index
         articles = Article.order('created_at DESC');
         render json: {status: 'SUCCESS', 
-                      message: 'Loaded articles successfully', 
+                      message: 'Loaded successfully', 
                       data: articles}, 
         status: :ok
       end
@@ -12,24 +12,23 @@ module Api
       def show
         article = Article.find(params[:id])
         render json: {status: 'SUCCESS', 
-                      message: 'Loaded articles successfully', 
+                      message: 'Loaded successfully', 
                       data: article}, 
         status: :ok
       end
 
       def create
         article = Article.new(article_params)
-
         if article.save
           render json: {status: 'SUCCESS', 
-                      message: 'Saved article successfully', 
-                      data: article}, 
+                        message: 'Saved successfully', 
+                        data: article}, 
           status: :ok
-          else 
-            render json: {status: 'ERROR', 
-                      message: 'Article not saved', 
-                      data: article.errors}, 
-            status: :unprocessable_entity
+        else 
+          render json: {status: 'ERROR', 
+                        message: 'Article not saved', 
+                        data: article.errors}, 
+          status: :unprocessable_entity
         end
       end
 
@@ -37,11 +36,27 @@ module Api
         article = Article.find(params[:id])
         article.destroy
         render json: {status: 'SUCCESS', 
-                      message: 'Article deleted successfully', 
+                      message: 'Deleted successfully', 
                       data: article}, 
         status: :ok
       end
 
+      def update 
+        article = Article.find(params[:id])
+        if article.update_attributes(article_params)
+          render json: {status: 'SUCCESS', 
+                      message: 'Updated successfully', 
+                      data: article}, 
+          status: :ok
+        else
+          render json: {status: 'ERROR', 
+                        message: 'Not updated', 
+                        data: article.errors}, 
+          status: :unprocessable_entity
+        end
+      end
+
+      
       private
 
       def article_params
