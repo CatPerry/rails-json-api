@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   Container,
   Header,
-  Segment,
   Button,
   Icon,
   Dimmer,
@@ -15,7 +14,7 @@ class App extends Component {
   constructor () {
     super()
     this.state = {}
-    this.getArticles = this.getArticles.bind(this)
+    this.getArticles = this.getArticles.bind(this);
     this.getArticle = this.getArticle.bind(this);
   }
 
@@ -85,47 +84,3 @@ class App extends Component {
 }
 
 export default App
-
-
-
-
-
-  // componentDidMount() {
-  //   window
-  //     .fetch("/api/articles")
-  //     .then(response => response.json())
-  //     .then(json => console.log(json))
-  //     .catch(error => console.log(error));
-  // }
-  // componentDidMount() {
-  //   fetch(`/api/v1/articles`, {
-  //     credentials: "same-origin",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json"
-  //     },
-  //     method: "GET"
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       this.setState({
-  //         title: data.article.title
-  //       });
-  //     });
-  // }
-//   render() {
-//     return (
-//       <div className="App">
-//         <div className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h2>Welcome to React</h2>
-//         </div>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
