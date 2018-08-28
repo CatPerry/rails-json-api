@@ -2,20 +2,16 @@
 #  module V1
     # class ArticlesController < ::Api::ApiController
     class ArticlesController < ApiController
+      # GET /drinks
       def index
-        articles = Article.order('created_at DESC');
-        render json: {status: 'SUCCESS', 
-                      message: 'Loaded successfully', 
-                      data: articles}, 
-        status: :ok
+        @articles = Article.select("id, title, body").all
+        render json: @articles.to_json
       end
 
+      # GET /drinks/:id
       def show
-        article = Article.find(params[:id])
-        render json: {status: 'SUCCESS', 
-                      message: 'Loaded successfully', 
-                      data: article}, 
-        status: :ok
+        @article = Article.find(params[:id])
+        render json: @article.as_json(only: [:id, :title, :body]) 
       end
 
       def create
